@@ -18,7 +18,7 @@ Parameters:
     Description: The full domain name e.g. phonebook.westerops.com
     AllowedPattern: (?!-)[a-zA-Z0-9-.]{1,63}(?<!-)
     ConstraintDescription: must be a valid DNS zone name.
-    Default: keycloackngnx.mehmetafsar.net
+    Default: sonarqube.mehmetafsar.net
   PortFrontend:
     Description: EMail address to notify if there are any scaling operations
     Type: String
@@ -128,8 +128,8 @@ Resources:
             cd /srv/docker/keycloak/data/certs/
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout keycloak.key -out keycloak.crt -subj "/C=US/ST=California/L=San Francisco/O=Keycloak/OU=Keycloak/CN=${FullDomainFrontend}"
             chmod 755 /srv/docker/keycloak/data/certs/keycloak.*
-            git clone https://github.com/mehmetafsar510/keycloak.git
-            cd keycloak
+            git clone https://github.com/mehmetafsar510/sonarqube.git
+            cd sonarqube
             docker-compose up -d
             
             
@@ -159,3 +159,8 @@ Outputs:
     Value: !Sub 
       - https://${PublicAddress}
       - PublicAddress: !Ref FullDomainFrontend
+  WebsitePublicURL:
+    Description: Docker Machine DNS Name
+    Value: !Sub 
+      - https://${PublicAddress}:9000
+      - PublicAddress: !Getatt DockerMachine.PublicIp
