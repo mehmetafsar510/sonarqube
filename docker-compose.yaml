@@ -14,8 +14,6 @@ services:
       - /opt/sonarCE/data:/opt/sonarqube/data
       - /opt/sonarCE/extentions:/opt/sonarqube/extensions
       - /opt/sonarCE/logs/:/opt/sonarqube/logs
-      - "/srv/docker/keycloak/data/certs/keycloak.key:/etc/x509/https/tls.key"
-      - "/srv/docker/keycloak/data/certs/keycloak.crt:/etc/x509/https/tls.crt"
     ports:
       - "9000:9000"
   db:
