@@ -130,7 +130,7 @@ Resources:
             git clone https://github.com/mehmetafsar510/sonarqube.git
             cd sonarqube
             sed -i "s/{FQDN}/${FullDomainFrontend}/g" letsencrypt.sh
-            sed -i "s/{FQDN}/${FullDomainFrontend}/g" /home/ubuntu/keycloak/docker-compose-ssl/data/nginx/app.conf
+            sed -i "s/{FQDN}/${FullDomainFrontend}/g" /home/ubuntu/sonarqube/data/nginx/app.conf
             chmod 755 letsencrypt.sh
             bash letsencrypt.sh
             docker-compose up -d
