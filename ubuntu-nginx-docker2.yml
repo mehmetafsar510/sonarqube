@@ -124,13 +124,15 @@ Resources:
             -o /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
             cd /home/ubuntu
-            mkdir -p /opt/sonarCE/data
-            mkdir -p /opt/sonarCE/logs
-            mkdir -p /opt/sonarCE/extensions
+            mkdir -p /opt/sonarCE/data /opt/sonarCE/logs /opt/sonarCE/extensions
             cd /home/ubuntu
             sysctl -w vm.max_map_count=524288
             git clone https://github.com/mehmetafsar510/sonarqube.git
             cd sonarqube
+            sed -i "s/{FQDN}/${FullDomainFrontend}/g" letsencrypt.sh
+            sed -i "s/{FQDN}/${FullDomainFrontend}/g" /home/ubuntu/keycloak/docker-compose-ssl/data/nginx/app.conf
+            chmod 755 letsencrypt.sh
+            bash letsencrypt.sh
             docker-compose up -d
             
             
