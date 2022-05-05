@@ -124,10 +124,14 @@ Resources:
             -o /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
             cd /home/ubuntu
+            mkdir -p /opt/sonarCE/data
+            mkdir -p /opt/sonarCE/logs
+            mkdir -p /opt/sonarCE/extensions
             mkdir -p /srv/docker/keycloak/data/certs/
             cd /srv/docker/keycloak/data/certs/
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout keycloak.key -out keycloak.crt -subj "/C=US/ST=California/L=San Francisco/O=Keycloak/OU=Keycloak/CN=${FullDomainFrontend}"
             chmod 755 /srv/docker/keycloak/data/certs/keycloak.*
+            cd /home/ubuntu
             git clone https://github.com/mehmetafsar510/sonarqube.git
             cd sonarqube
             docker-compose up -d
@@ -163,4 +167,4 @@ Outputs:
     Description: Docker Machine DNS Name
     Value: !Sub 
       - https://${PublicAddress}:9000
-      - PublicAddress: !Getatt DockerMachine.PublicIp
+      - PublicAddress: !GetAtt DockerMachine.PublicIp
