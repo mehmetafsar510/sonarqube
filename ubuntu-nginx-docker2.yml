@@ -163,5 +163,5 @@ Outputs:
   WebsitePublicURL:
     Description: Docker Machine DNS Name
     Value: !Sub 
-      - https://${PublicAddress}:9000
+      - http://${PublicAddress}:9000
       - PublicAddress: !GetAtt DockerMachine.PublicIp
